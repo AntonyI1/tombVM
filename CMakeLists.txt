@@ -8,4 +8,5 @@ include_directories(src)
 add_executable(tombVM
     src/main.cpp
     src/vm.cpp
+    src/loader.cpp
 )
