@@ -19,5 +19,6 @@ private:
     std::array<uint8_t, 2> registers; // Two 8 bit registers
     std::vector<uint8_t> memory; // Holds loaded program
     size_t ip; // Instruction pointer
+    bool cmp_flag; // stores result of last CMP (equal or not)
 
 };   

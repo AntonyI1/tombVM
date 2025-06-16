@@ -35,3 +35,5 @@
 build/
 *.vmbin
 /.vscode
+.vscode/settings.json
+/.vscode
