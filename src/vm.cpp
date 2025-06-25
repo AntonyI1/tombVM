@@ -47,6 +47,35 @@ void VM::run(){
                 }
                 break;
             }
+            case 0x07: {  // STORE R, address
+                uint8_t reg = memory[ip++];
+                uint8_t addr = memory[ip++];
+                memory_array[addr] = registers[reg];
+                break;
+            }
+            case 0x08: { // LOAD R, address
+                uint8_t reg = memory[ip++];
+                uint8_t addr = memory[ip++];
+                registers[reg] = memory_array[addr];
+                break;
+            }
+            case 0x09: { // PUSH R
+                uint8_t reg = memory[ip++];
+                stack.push(registers[reg]);
+                break;
+            }
+            case 0x0A: { // POP R
+                uint8_t reg = memory[ip++];
+                if (!stack.empty()){
+                    registers[reg] = stack.top();
+                    stack.pop();
+                }
+                else{
+                    std::cerr << "Stack underflow!\n";
+                    return;
+                }
+                break;
+            }
             case 0xFF: { // STOP
                 return;
             }
