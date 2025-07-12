@@ -5,7 +5,7 @@ Includes conditional branching support and a built-in test harness.
 
 ## Features (v0.2.0)
 - Custom instruction set (MOV, ADD, CMP, JE, PRINT, JMP, HALT)
-- 2 general-purpose 8-bit registers
+- 4 general-purpose 8-bit registers
 - Instruction pointer and execution loop
 - Conditional jumps (CMP + JE)
 - Binary loader for `.vmbin` programs
