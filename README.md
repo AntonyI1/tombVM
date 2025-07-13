@@ -1,16 +1,16 @@
-# tombVM
+# TombVM: A Simulated Virtual Machine for Binary Analysis and Malware Inspection
 
-A C++ virtual machine sandbox for binary analysis & malware behavior inspection.  
-Includes conditional branching support and a built-in test harness.
+TombVM is a custom-built virtual machine (VM) simulator designed in C++ for safe, controlled execution and analysis of binary programs. It provides an emulated environment to execute custom bytecode, offering capabilities for low-level static and dynamic inspection, particularly useful for understanding program flow and behavior.
 
-## Features (v0.2.0)
-- Custom instruction set (MOV, ADD, CMP, JE, PRINT, JMP, HALT)
-- 4 general-purpose 8-bit registers
-- Instruction pointer and execution loop
-- Conditional jumps (CMP + JE)
-- Binary loader for `.vmbin` programs
-- Automated test harness with expected output comparison
-- Whitespace-tolerant test validation
+## Features (v0.3.0)
+- Custom 8-bit Instruction Set: Compact, register-based instruction set.
+- Register-Based Architecture: Four 8-bit general-purpose registers (R0-R3).
+- Simulated Memory: Dedicated memory array (1024 int32_t elements) for STORE/LOAD operations.
+- Internal Stack: LIFO stack for PUSH/POP operations.
+- Instruction Pointer (IP): Manages program flow and jumps.
+- Conditional Branching: CMP and JE instructions for decision-making.
+- Binary Loader: Loads .vmbin files into simulated memory.
+- Error Handling: Basic handling for unknown opcodes and stack underflow.
 
 ## Instruction Set
 
@@ -22,7 +22,12 @@ Includes conditional branching support and a built-in test harness.
 | 0x04   | JMP addr           | addr             | Jump to instruction address            |
 | 0x05   | CMP R, value       | reg, val         | Compare reg to value and set flag      |
 | 0x06   | JE addr            | addr             | Jump if previous CMP matched           |
+| 0x07   | STORE R, addr      | reg, addr        | Store register value to memory         |
+| 0x08   | LOAD R, addr       | reg, addr        | Load memory value into register        |
+| 0x09   | PUSH R             | reg              | Push register onto internal stack      |
+| 0x0A   | POP R 	            | reg              | Pop stack into register                |
 | 0xFF   | HALT               | —                | Terminate program                      |
+
 
 ## Test Harness
 
